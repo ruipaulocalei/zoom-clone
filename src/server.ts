@@ -10,6 +10,12 @@ app.get('/', (req: Request, res: Response) => res.render('home'))
 app.get('/*', (req: Request, res: Response) => res.redirect('/'))
 
 const server: http.Server = http.createServer(app);
-const io: SocketIO.Server = new SocketIO.Server();
-io.attach(server);
-app.listen(3333)
+const wsServer: SocketIO.Server = new SocketIO.Server();
+wsServer.attach(server);
+
+wsServer.on('connection', socket => {
+  console.log(socket)
+})
+
+
+server.listen(3333)
