@@ -14,7 +14,7 @@ const wsServer: SocketIO.Server = new SocketIO.Server();
 wsServer.attach(server);
 
 wsServer.on('connection', socket => {
-  console.log(socket)
+  socket.on('room', message => console.log(message))
 })
 
 
